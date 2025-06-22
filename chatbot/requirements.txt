@@ -1,0 +1,10 @@
+langchain
+langchain-openai
+langchain-community
+ollama
+streamlit
+python-dotenv
+tiktoken
+langchain-huggingface
+langchain-core
+python-dotenv

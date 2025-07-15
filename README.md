@@ -2,8 +2,6 @@
 
 A beautifully designed, AI-powered chatbot interface built using **LangChain**, **Groq's Llama 3**, and **Streamlit**. TechMind is your futuristic, emoji-friendly AI assistant that helps you explore coding, AI, tech, and beyond — in a blazing-fast and interactive way!
 
-![TechMind Chatbot UI](./preview.png)
-
 ---
 
 ## 🚀 Features

@@ -1,10 +1,19 @@
+# Core LangChain packages
 langchain
-langchain-openai
-langchain-community
-ollama
-streamlit
-python-dotenv
-tiktoken
-langchain-huggingface
 langchain-core
+langchain-openai
+
+# OpenAI client (required for Grok API)
+openai
+
+# Streamlit for web interface
+streamlit
+
+# Environment management
 python-dotenv
+
+# Token counting and text processing
+tiktoken
+
+# Optional: LangChain tracing and monitoring
+langsmith

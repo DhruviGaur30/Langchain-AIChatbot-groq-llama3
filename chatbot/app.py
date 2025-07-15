@@ -1,13 +1,26 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-
 import streamlit as st
 import os
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables (only works locally)
 load_dotenv()
+
+# API Key handling - works both locally and in deployment
+def get_api_key(key_name):
+    """Get API key from Streamlit secrets first, then fallback to environment variables"""
+    try:
+        # Try Streamlit secrets first (for deployment)
+        return st.secrets[key_name]
+    except (KeyError, FileNotFoundError):
+        # Fallback to environment variables (for local development)
+        return os.getenv(key_name)
+
+# Get API keys
+GROQ_API_KEY = get_api_key("GROQ_API_KEY")
+LANGCHAIN_API_KEY = get_api_key("LANGCHAIN_API_KEY")
 
 # Page config
 st.set_page_config(
@@ -17,7 +30,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS styling (your existing CSS code)
+# CSS styling
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
@@ -300,17 +313,15 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Initialize Groq API
-groq_api_key = os.getenv("GROQ_API_KEY")
-if not groq_api_key:
-    st.error("🚨 GROQ_API_KEY not found! Please add it to your .env file")
+# Check if Groq API key is available
+if not GROQ_API_KEY:
+    st.error("🚨 GROQ_API_KEY not found! Please add it to your Streamlit secrets or .env file")
     st.stop()
 
 # Optional: LangChain tracing
-langchain_key = os.getenv("LANGCHAIN_API_KEY")
-if langchain_key:
+if LANGCHAIN_API_KEY:
     os.environ["LANGCHAIN_TRACING_V2"] = "true"
-    os.environ["LANGCHAIN_API_KEY"] = langchain_key
+    os.environ["LANGCHAIN_API_KEY"] = LANGCHAIN_API_KEY
 
 # Session state initialization
 if "messages" not in st.session_state:
@@ -320,13 +331,15 @@ if "llm" not in st.session_state:
     try:
         # Initialize Groq using OpenAI-compatible endpoint
         st.session_state.llm = ChatOpenAI(
-            model="llama3-8b-8192",  # Changed to Groq's Llama 3 model
+            model="llama3-8b-8192",
             temperature=0.7,
             max_tokens=1000,
-            openai_api_key=groq_api_key,
-            openai_api_base="https://api.groq.com/openai/v1"  # Changed to Groq endpoint
+            openai_api_key=GROQ_API_KEY,
+            openai_api_base="https://api.groq.com/openai/v1"
         )
         
+        # Test the connection with a simple call
+        test_response = st.session_state.llm.invoke("Hello")
         st.success("🚀 Groq API (Llama 3) initialized successfully!")
         
     except Exception as e:

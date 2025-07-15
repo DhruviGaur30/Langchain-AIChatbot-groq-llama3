@@ -1,6 +1,6 @@
-🤖 TechMind AI Chatbot
+# 🤖 TechMind AI Chatbot
 
-A beautifully designed, AI-powered chatbot interface built using **LangChain**, **Mistral AI**, and **Streamlit**. TechMind is your futuristic, emoji-friendly AI assistant that helps you explore coding, AI, tech, and beyond in a fun and interactive way!
+A beautifully designed, AI-powered chatbot interface built using **LangChain**, **Groq's Llama 3**, and **Streamlit**. TechMind is your futuristic, emoji-friendly AI assistant that helps you explore coding, AI, tech, and beyond — in a blazing-fast and interactive way!
 
 ![TechMind Chatbot UI](./preview.png)
 
@@ -8,12 +8,12 @@ A beautifully designed, AI-powered chatbot interface built using **LangChain**, 
 
 ## 🚀 Features
 
-- ⚡️ Powered by [Mistral 7B Instruct](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3) via HuggingFace
+- ⚡ Powered by [Llama 3 on Groq](https://console.groq.com/) via OpenAI-compatible endpoint
 - 🧠 Prompt engineering using LangChain's `ChatPromptTemplate`
-- 🎨 Fully customized futuristic UI with CSS animations
-- 📚 Chat history with sidebar navigation
-- 🧪 API Key protection using `.env`
-- 🛠 Developed in **Python** and deployed with **Streamlit**
+- 🎨 Fully customized futuristic UI with CSS animations and glowing themes
+- 📚 Chat history with sidebar preview
+- 🔒 API key protection using `.env` file
+- 🛠 Developed in **Python** and deployed using **Streamlit**
 
 ---
 
@@ -21,23 +21,21 @@ A beautifully designed, AI-powered chatbot interface built using **LangChain**, 
 
 - [LangChain](https://www.langchain.com/)
 - [Streamlit](https://streamlit.io/)
-- [Mistral AI via HuggingFace](https://huggingface.co/mistralai)
+- [Groq (OpenAI-compatible API)](https://console.groq.com/)
 - [Python Dotenv](https://pypi.org/project/python-dotenv/)
-- [tiktoken](https://github.com/openai/tiktoken) for token handling
+- [tiktoken](https://github.com/openai/tiktoken)
 
 ---
 
-## 📁 File Structure
+## 📁 Project Structure
 
-```
+├── .env # 🔐 API keys (excluded from GitHub)
+├── .gitignore # Files/folders to ignore
+├── app.py # 🚀 Main Streamlit chatbot app
+├── requirements.txt # 📦 Python dependencies
+└── preview.png # 🖼️ Optional UI screenshot
 
-├── .env                # API keys (should be excluded from GitHub)
-├── .gitignore
-├── app.py              # Main Streamlit application
-├── requirements.txt    # Python dependencies
-└── preview\.png         # (Optional) UI screenshot
-
-````
+---
 
 ---
 
@@ -45,94 +43,50 @@ A beautifully designed, AI-powered chatbot interface built using **LangChain**, 
 
 ### 1. 🔑 Get API Keys
 
-- [HuggingFace Token](https://huggingface.co/settings/tokens)
-- [LangChain API Key](https://smith.langchain.com/)
+- [Groq API Key](https://console.groq.com/)
+- [LangChain API Key (optional)](https://smith.langchain.com/)
+
+---
 
 ### 2. 📝 Create `.env` File
 
 ```env
-HUGGINGFACEHUB_API_TOKEN=your_huggingface_token
-LANGCHAIN_API_KEY=your_langchain_key
-````
-
+GROQ_API_KEY=your_groq_api_key
+LANGCHAIN_API_KEY=your_langchain_key  # Optional
+```
 ### 3. 📦 Install Dependencies
-
-```bash
+```
 pip install -r requirements.txt
 ```
 
 ### 4. 🚀 Run the App
-
-```bash
+```
 streamlit run app.py
 ```
-
----
-
-## ✨ Screenshots
-
-![Chat Interface](./preview.png)
-
-> ✨ Beautifully styled messages with animated gradients and avatars
-> 🎯 Sidebar with chat history and custom welcome animation
-
----
-
-## 🧠 Prompt Design
-
-This chatbot uses the following system message to set its tone:
-
+### 5. Requirements
 ```
-You are TechMind, an advanced AI assistant. Be helpful, engaging, and tech-savvy. Use emojis to make responses fun and friendly!
-```
-
----
-
-## 📦 Requirements
-
-```txt
 langchain
 langchain-openai
 langchain-community
-ollama
 streamlit
 python-dotenv
 tiktoken
-langchain-huggingface
 langchain-core
 ```
+### 🙅 Security Notes
+✅ .env is included in .gitignore (already done)
 
----
+❌ Never push your API keys to GitHub
 
-## 🙅 Security Note
+☁️ Use Streamlit secrets or deployment env variables when deploying
 
-Make sure to:
+### 💡 Inspiration
+This project merges conversational AI with aesthetic UI design to help devs and tech learners interact with a fun, fast, and powerful coding assistant.
 
-* ✅ Add `.env` to your `.gitignore` file (already done)
-* ❌ Never commit your API keys to the repo!
+### 📜 License
+This project is licensed under the MIT License.
 
----
+### 🧑‍💻 Author
+Dhruvi Gaur – @DhruviGaur30
+Made with 💜 using LangChain, Llama 3, Groq, and Streamlit.
 
-## 💡 Inspiration
-
-This project blends conversational AI and aesthetic frontend design to help developers and tech learners chat with an intelligent assistant in a creative and comfortable space.
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 🧑‍💻 Author
-
-**Dhruvi Gaur** – [@DhruviGaur30](https://github.com/DhruviGaur30)
-Made with 💜, LangChain, and Streamlit.
-
-```
-
----
-
-Let me know if you'd like to auto-generate a [preview.png UI screenshot](f), or want help writing a [deployment guide for Streamlit Cloud](f), or even a [LICENSE file](f)!
-```
